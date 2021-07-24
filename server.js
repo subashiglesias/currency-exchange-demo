@@ -1,9 +1,29 @@
-let express = require("express");
-let axios = require("axios");
-let moment = require("moment")
-let app = express();
-let path = require("path");
-let port = process.env.PORT || 3000;
+const express = require("express");
+const axios = require("axios");
+const moment = require("moment");
+const helmet = require('helmet')
+const app = express();
+const path = require("path");
+const port = process.env.PORT || 3000;
+
+app.use(helmet())
+
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: [
+            '\'self\'',
+            'https://v6.exchangerate-api.com/',
+        ],
+        styleSrc: [
+            '\'self\'',
+            '\'unsafe-inline\'',
+        ],
+        scriptSrc: [
+            '\'self\'',
+            '\'unsafe-inline\'',
+        ]
+    }
+}))
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname + "/build/index.html"));
