@@ -1,0 +1,12 @@
+.currency-toggle {
+    display: flex;
+    align-items: baseline;
+}
+
+select {
+    margin-left: 1rem;
+    width: 10rem;
+    border: solid 1px #888b8d;
+    font-size: 1rem;
+    border-radius: 2px;
+}
